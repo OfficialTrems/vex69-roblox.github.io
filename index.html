@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Get IP Addresses</title>
+            <link rel="stylesheet" href="style.css"> <!-- Link to the CSS file -->
+    <style>
+        body {
+            background-image: url('https://media.tenor.com/EVEMd0GmrnoAAAAM/twerk-twerking.gif'); /* Replace 'your-background.gif' with the path to your GIF */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Keeps the background fixed while scrolling */
+        }
+
+        /* Style for the container */
+        .container1 {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        /* Style for the content */
+        .content {
+            text-align: center; /* Center text horizontally */
+        }
+
+        /* Style for the image */
+        img {
+            max-width: 100%; /* Ensure the image does not exceed the container width */
+            max-height: 100%; /* Ensure the image does not exceed the container height */
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="container">
+            <div class="content">
+                <audio autoplay>
+                    <source src="sound.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <h1>Public and Private IP Addresses</h1>
+                <p id="publicIP">Public IP: Loading...</p>
+                <p id="privateIP">Private IP: Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch public IP address using an external service
+        function getPublicIP() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('publicIP').textContent = `Public IP: ${data.ip}`;
+                })
+                .catch(error => console.error('Error fetching public IP:', error));
+        }
+
+        function getPrivateIP() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('privateIP').textContent = `Private IP: ${data.ip}`;
+                })
+                .catch(error => console.error('Error fetching public IP:', error));
+        }
+
+        // Call the functions to get the IP addresses
+        getPublicIP();
+        getPrivateIP();
+    </script>
+</body>
+</html>

